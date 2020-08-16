@@ -1,0 +1,20 @@
+[package]
+name = "unlambda"
+version = "0.1.0"
+authors = ["Thom Chiovoloni <chiovolonit@gmail.com>"]
+edition = "2018"
+description = "An unlambda parser and interpreter a crate"
+license = "CC0-1.0"
+readme = "README.md"
+keywords = ["unlambda", "SKI", "why", "interpreter", "really-why"]
+categories = ["parser-implementations", "development-tools::ffi"]
+repository = "https://github.com/thomcc/unlambda-rs"
+documentation = "https://docs.rs/unlambda"
+homepage = "https://github.com/thomcc/unlambda-rs"
+
+[features]
+arc = []
+
+[dependencies]
+log = { version = "0.4", optional = true }
+

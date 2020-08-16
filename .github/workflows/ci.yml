@@ -1,0 +1,75 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+env:
+  RUST_BACKTRACE: 1
+
+jobs:
+  # Test on stable and MSRV
+  test:
+    name: Test Rust
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+
+      - name: Test --no-default-features
+        run: cargo test --no-default-features --verbose
+
+      - name: Test --all-features
+        run: cargo test --all-features --verbose
+
+      - name: Test default features
+        run: cargo test --verbose
+
+  # Ensure patch is formatted.
+  fmt:
+    name: Format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - uses: hecrj/setup-rust-action@v1
+        with:
+          rust-version: stable
+          components: rustfmt
+      - name: Check formatting
+        run: cargo fmt --all -- --check
+
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - uses: hecrj/setup-rust-action@v1
+        with:
+          rust-version: stable
+          components: clippy
+      - name: Run lint
+        run: cargo clippy --workspace --all-features
+  # Check doc reference links are all valid.
+  doc:
+    name: Doc check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - uses: hecrj/setup-rust-action@v1
+        with:
+          rust-version: nightly
+      - name: Check docs
+        # Note: needs cargo rustdoc, not cargo doc.
+        run: cargo rustdoc --all-features -- -D warnings
