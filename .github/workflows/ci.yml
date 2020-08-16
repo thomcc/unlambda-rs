@@ -57,8 +57,10 @@ jobs:
         with:
           rust-version: stable
           components: clippy
-      - name: Run lint
-        run: cargo clippy --workspace --all-features
+      - name: Run lint (all features)
+        run: cargo clippy --all-features
+      - name: Run lint (no features)
+        run: cargo clippy --no-default-features
   # Check doc reference links are all valid.
   doc:
     name: Doc check

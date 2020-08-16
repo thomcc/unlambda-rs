@@ -27,23 +27,19 @@
 //! # }
 //! ```
 
-
-pub use eval::{eval_to_stdout, eval_to_vec, eval_to_string, Error as EvalError};
-pub use parse::{parse_from_file, parse_from_str, parse_from_stdin, parse_from_reader, ParseError};
+pub use eval::{eval_to_stdout, eval_to_string, eval_to_vec, Error as EvalError};
 pub use io::Input;
+pub use parse::{parse_from_file, parse_from_reader, parse_from_stdin, parse_from_str, ParseError};
 pub use util::P;
 
+pub mod eval;
 pub mod internals;
 pub mod io;
 pub mod parse;
-pub mod eval;
 mod util;
 
+pub(crate) use eval::*;
 pub(crate) use internals::*;
 pub(crate) use io::*;
 pub(crate) use parse::*;
-pub(crate) use eval::*;
 pub(crate) use util::p;
-
-
-

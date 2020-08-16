@@ -1,4 +1,3 @@
-
 #[cfg(feature = "arc")]
 type InnerP<T> = std::sync::Arc<T>;
 #[cfg(not(feature = "arc"))]

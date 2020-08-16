@@ -1,7 +1,11 @@
 //! Various input and output types.
 
 use super::*;
-use std::{char::REPLACEMENT_CHARACTER, io::{Stdout, Write, Read, ErrorKind}, path::Path};
+use std::{
+    char::REPLACEMENT_CHARACTER,
+    io::{ErrorKind, Read, Stdout, Write},
+    path::Path,
+};
 
 #[non_exhaustive]
 pub enum Output {
@@ -110,8 +114,6 @@ impl Ctx {
     }
 }
 
-
-
 fn utf8_char_width(first_byte: u8) -> usize {
     match first_byte {
         0b0000_0000..=0b0111_1111 => 1,
@@ -136,7 +138,6 @@ impl Input<'_> {
         let o = crate::ParseOptions {
             log_warnings: true,
             strict: false,
-            ..Default::default()
         };
         match self {
             Self::Str(s) => parse_from_str(*s, o),
@@ -164,4 +165,3 @@ impl Default for Input<'_> {
         Self::Str("")
     }
 }
-

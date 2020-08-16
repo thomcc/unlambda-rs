@@ -36,7 +36,6 @@ pub fn parse_from_stdin(o: ParseOptions) -> Result<P<Expr>, ParseError> {
     parse_from_reader(std::io::stdin().lock(), o)
 }
 
-
 #[derive(Debug)]
 #[non_exhaustive]
 pub enum ParseErrorKind {
@@ -45,8 +44,8 @@ pub enum ParseErrorKind {
     Io(std::io::Error),
 }
 
-use ParseErrorKind::{UnexpectedChar, UnexpectedEnd};
 use std::io::Read;
+use ParseErrorKind::{UnexpectedChar, UnexpectedEnd};
 
 #[derive(Debug)]
 struct ParseErrorInfo {
@@ -185,7 +184,7 @@ impl<'a> Parser<'a> {
     #[cold]
     fn error(&self, kind: ParseErrorKind) -> ParseError {
         let (line, col) = self.line_col();
-        ParseError::new(kind, line, col, self.src.map(|p| p.into()))
+        ParseError::new(kind, line, col, self.src)
     }
 
     fn next_c(&mut self) -> Result<char, ParseError> {
@@ -231,9 +230,10 @@ impl<'a> Parser<'a> {
             if self.opts.strict {
                 return Err(self.error(UnexpectedChar(v)));
             } else if self.opts.log_warnings {
-                let lc = self.error(UnexpectedChar(v)).to_string();
-                #[cfg(feature = "log")] {
-                    log::warn!("Ignoring trailing garbage after expression: {}", lc);
+                let _lc = self.error(UnexpectedChar(v)).to_string();
+                #[cfg(feature = "log")]
+                {
+                    log::warn!("Ignoring trailing garbage after expression: {}", _lc);
                 }
             }
         }
