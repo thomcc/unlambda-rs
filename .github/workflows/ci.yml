@@ -19,8 +19,9 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 1
-      - name: Install Rust
-        uses: actions-rs/toolchain@v1
+      - uses: hecrj/setup-rust-action@v1
+        with:
+          rust-version: stable
 
       - name: Test --no-default-features
         run: cargo test --no-default-features --verbose

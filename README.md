@@ -1,6 +1,7 @@
 # `unlambda`
 
-Rust unlambda interpreter library. The code is okay, mostly.
+Rust unlambda interpreter library. The code is okay, mostly, by which I entirely
+mean it works, doesn't leak memory (AFAIK) and the API doesn't disgust me.
 
 Written on a whim. I had intended to write a rust unlambda binary, and maybe
 I'll get to that but this project does nobody any good sitting in my `~/code`
