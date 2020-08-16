@@ -1,19 +1,29 @@
 # `unlambda`
 
-Rust unlambda interpreter library. The code is okay, mostly, by which I entirely
-mean it works, doesn't leak memory (AFAIK) and the API doesn't disgust me.
+[![Build Status](https://github.com/thomcc/unlambda-rs/workflows/CI/badge.svg)](https://github.com/thomcc/unlambda-rs/actions)
+[![Docs](https://docs.rs/unlambda-rs/badge.svg)](https://docs.rs/unlambda-rs)
+[![Latest Version](https://img.shields.io/crates/v/unlambda-rs.svg)](https://crates.io/crates/unlambda-rs)
 
-Written on a whim. I had intended to write a rust unlambda binary, and maybe
-I'll get to that but this project does nobody any good sitting in my `~/code`
-folder.
+It's a Rust unlambda interpreter that you can use as a library. The code is
+mostly okay, (by which I entirely mean it works, doesn't leak memory (AFAIK) and
+the API doesn't disgust me). But has way less documentation that I usually want
+to provide.
 
-It's rough around the edges and the docs are almost non-existent. The important
-parts of the api are exposed at the top level but it's been long enough since I
-looked that really I just fixed obvious warts and exposed more-or-less
-everything.
+Anyway, this was written on a whim a *while* ago. I had intended to write a rust
+unlambda binary, and maybe I'll get to that but this project does nobody any
+good sitting in my `~/code` folder. I'm trying to get the >90% projects out
+there and on to crates.io if they're any good at all, and so here we are.
 
-If you want to use a library to evaluate unlambda, then go for it. Far be it
-from me to stop you, even if you must access things deep in this code's guts.
+Anyway, it's a little rough around the edges (some things I wouldn't do today),
+exposes more of it's guts than you might expect, and the docs for anything
+beyond the basics are almost non-existent.
+
+That said, the important parts of the api are exposed at the top level, although
+essentially almost everything is `pub`. I mean, if you want to use write a
+program that evaluates unlambda and don't want to write the interpreter
+yourself, then there's no real need for me to hold stuff back that might get in
+your way? I don't know. It helps that unlambda is basically a fixed format and
+doesn't get updates, so barring bugfixes this is probably final-ish.
 
 ## Example
 
